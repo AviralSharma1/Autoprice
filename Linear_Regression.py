@@ -64,6 +64,16 @@ print("The intercept is", intercept)
 
 print("Accuracy of the model is ",100*regression_model.score(X_test, y_test))
 
+import statsmodels.formula.api as smf
+# cars = pd.concat([y_train, X_train], axis=1, join='inner')
+cars = pd.concat([y_train, X_train], axis=1)
+cars.head()
+
+lmcars = smf.ols(formula= 'price ~ symboling + wheel_base + length + width + height + curb_weight +  engine_size + bore + stroke + compression_ratio + hp + peak_rpm + city_mpg + highway_mpg  + cylinder', data=cars).fit()
+print(lmcars.params)
+print(lmcars.summary())
+
+
 
 
 
